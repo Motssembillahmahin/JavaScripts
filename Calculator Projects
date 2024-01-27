@@ -1,0 +1,65 @@
+<!-- It's just a practise code to build a simple arthemetic calculation using js and for designing use css -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculator</title>
+  <link rel="stylesheet" href="CalculatorCSS.css">
+</head>
+<style> 
+body{
+  justify-content: center;
+  padding-top: 12%;
+  padding-left: 40%;
+}
+.calculator-whole-body{
+  border: 2px solid black;
+  border-radius: 10px;
+  width: 200px;
+}
+#display{
+  margin: 10px;
+  width: 85%;
+  border-radius: 20px;
+  font-size: 25px;
+}
+.button-container{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.button{
+  width: 50px;
+  height: 50px;
+  margin: 3px;
+}
+</style>
+<body>
+  <div class="calculator-whole-body">
+    <input type="text" id="display" readonly>
+    <div class="button-container">
+      <button type="button" class="button" onclick="CurrentDisplay = ''; document.querySelector('#display').value = CurrentDisplay">c</button>
+      <button type="button" class="button" onclick="CurrentDisplay = CurrentDisplay + '1'; document.querySelector('#display').value = CurrentDisplay">1</button>
+      <button type="button" class="button" onclick="CurrentDisplay = CurrentDisplay + '2'; document.querySelector('#display').value = CurrentDisplay">2</button>
+      <button type="button" class="button" onclick="CurrentDisplay = CurrentDisplay + '+'; document.querySelector('#display').value = CurrentDisplay">+</button>
+      <button type="button" class="button" onclick="CurrentDisplay = CurrentDisplay + '3'; document.querySelector('#display').value = CurrentDisplay">3</button>
+      <button type="button" class="button" onclick="CurrentDisplay = CurrentDisplay + '4'; document.querySelector('#display').value = CurrentDisplay">4</button>
+      <button type="button" class="button" onclick="CurrentDisplay = CurrentDisplay + '-'; document.querySelector('#display').value = CurrentDisplay">-</button>
+      <button type="button" class="button" onclick="CurrentDisplay = CurrentDisplay + '5'; document.querySelector('#display').value = CurrentDisplay">5</button>
+      <button type="button" class="button"  onclick="CurrentDisplay = CurrentDisplay + '6'; document.querySelector('#display').value = CurrentDisplay">6</button>
+      <button type="button" class="button" onclick="CurrentDisplay = CurrentDisplay + '*'; document.querySelector('#display').value = CurrentDisplay">*</button>
+      <button type="button" class="button" onclick="CurrentDisplay = CurrentDisplay + '7'; document.querySelector('#display').value = CurrentDisplay">7</button>
+      <button type="button" class="button" onclick="CurrentDisplay = CurrentDisplay + '8'; document.querySelector('#display').value = CurrentDisplay">8</button>
+      <button type="button" class="button" onclick="CurrentDisplay = CurrentDisplay + '/'; document.querySelector('#display').value = CurrentDisplay">/</button>
+      <button type="button" class="button" onclick="
+      let result = 0;
+      result = eval(CurrentDisplay) ; CurrentDisplay = result; document.querySelector('#display').value = CurrentDisplay">=</button>
+      <button type="button" class="button" onclick="CurrentDisplay = CurrentDisplay + '9'; document.querySelector('#display').value = CurrentDisplay">9</button>
+      <button type="button" class="button"onclick="CurrentDisplay = CurrentDisplay + '0'; document.querySelector('#display').value = CurrentDisplay">0</button>
+      <button type="button" class="button" onclick="CurrentDisplay = CurrentDisplay + '.'; document.querySelector('#display').value = CurrentDisplay">.</button>
+    </div>
+  </div>
+  <script src="CalculatorJS.js"></script>
+</body>
+</html>
