@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cricket Game</title>
+</head>
+<style>
+  .whole-body{
+    justify-content: center;
+    padding-left: 20%;
+  }
+  .button-container{
+    justify-content: center;
+    width: 200px;
+  }
+  .button{
+    width: 60px;
+    padding: 4px 6px;
+    margin-right: 3px;
+  }
+</style>
+<body>
+  <div class="whole-body">
+    <h1>Bat Ball Stamp</h1>
+<div class="button-container">
+  <button class="button" onclick="
+   let RandomNumber = Math.random() * 3
+   let ComputerChoice;
+
+   if (RandomNumber > 0 && RandomNumber <= 1) {
+    ComputerChoice = 'Bat';
+    } else if (RandomNumber > 1 && RandomNumber <= 2){
+      ComputerChoice = 'Ball'
+    } else{
+      ComputerChoice = 'Stamp'
+    }
+    let ResultMsg ;
+    if (ComputerChoice === 'Ball') {
+      ResultMsg = 'User Won'
+    } else if (ComputerChoice === 'Bat'){
+      ResultMsg = ` It's a tie `
+    } else {
+      ResultMsg = 'Computer Won'
+    }
+  
+  alert(`You have chosen to bat, Compute choice is ${ComputerChoice} after all ${ResultMsg} `)
+    
+  ">Bat</button>
+  <button class="button" onclick="
+   let RandomNumberBall = Math.random() * 3
+   let ComputerChoiceBall;
+
+   if (RandomNumberBall > 0 && RandomNumberBall <= 1) {
+    ComputerChoiceBall = 'Bat';
+    } else if (RandomNumberBall > 1 && RandomNumberBall <= 2){
+      ComputerChoiceBall = 'Ball'
+    } else{
+      ComputerChoiceBall = 'Stamp'
+    }
+    let ResultMsgBall;
+    if (ComputerChoiceBall === 'Bat') {
+      ResultMsgBall = 'User Won'
+    } else if (ComputerChoiceBall === 'Ball'){
+      ResultMsgBall = ` It's a tie `
+    } else {
+      ResultMsgBall = 'Computer Won'
+    }
+  
+  alert(`You have chosen to ball, Compute choice is ${ComputerChoiceBall} after all ${ResultMsgBall} `)
+  
+  
+  ">Ball</button>
+  <button class="button" onclick="
+  let RandomNumberStamp = Math.random() * 3
+   let ComputerChoiceStamp;
+
+   if (RandomNumberStamp > 0 && RandomNumberStamp<= 1) {
+    ComputerChoiceStamp = 'Bat';
+    } else if (RandomNumberStamp > 1 && RandomNumberStamp <= 2){
+      ComputerChoiceStamp = 'Ball'
+    } else{
+      ComputerChoiceStamp = 'Stamp'
+    }
+    let ResultMsgStamp;
+    if (ComputerChoiceStamp === 'Bat') {
+      ResultMsgStamp = 'User Won'
+    } else if (ComputerChoiceStamp === 'Stamp'){
+      ResultMsgStamp = ` It's a tie `
+    } else {
+      ResultMsgStamp = 'Computer Won'
+    }
+  
+  alert(`You have chosen to Stamp, Computer choice is ${ComputerChoiceStamp} after all ${ResultMsgStamp} `)
+  ">Stamp</button>
+</div>
+  </div>
+</body>
+</html>
