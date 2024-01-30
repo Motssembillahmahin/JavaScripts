@@ -8,11 +8,12 @@
 <style>
   .whole-body{
     justify-content: center;
-    padding-left: 20%;
+    padding-left: 15%;
+    padding-top: 10%;
   }
   .button-container{
     justify-content: center;
-    width: 200px;
+    width: 400px;
   }
   .button{
     width: 60px;
@@ -25,64 +26,102 @@
     <h1>Bat Ball Stamp</h1>
 <div class="button-container">
   <button class="button" onclick="
-   GenerateComputerChoice();
-    let ResultMsg ;
-    if (ComputerChoice === 'Ball') {
-      ResultMsg = 'User Won'
-    } else if (ComputerChoice === 'Bat'){
-      ResultMsg = ` It's a tie `
-    } else {
-      ResultMsg = 'Computer Won'
-    }
-  
-  alert(`You have chosen to bat, Compute choice is ${ComputerChoice} after all ${ResultMsg} `)
-    
+    let computerChoice = GenerateComputerChoice();
+    let resultMsg = getResult('Bat', computerChoice);
+    showResult('Bat', computerChoice, resultMsg);
   ">Bat</button>
   <button class="button" onclick="
-      GenerateComputerChoice();
-      let ResultMsgBall;
-      if (ComputerChoice === 'Bat') {
-        ResultMsgBall = 'User Won'
-      } else if (ComputerChoice === 'Ball'){
-        ResultMsgBall = ` It's a tie `
-      } else {
-        ResultMsgBall = 'Computer Won'
-      }
-    
-    alert(`You have chosen to ball, Compute choice is ${ComputerChoice} after all ${ResultMsgBall} `)
-    
+      computerChoice = GenerateComputerChoice();
+    resultMsg = getResult('Ball', computerChoice);
+    showResult('Ball', computerChoice, resultMsg);
   
   ">Ball</button>
-    <button class="button" onclick="
-    GenerateComputerChoice();
-      let ResultMsgStamp;
-      if (ComputerChoice === 'Bat') {
-        ResultMsgStamp = 'User Won'
-      } else if (ComputerChoice === 'Stamp'){
-        ResultMsgStamp = ` It's a tie `
-      } else {
-        ResultMsgStamp = 'Computer Won'
-      }
-    
-    alert(`You have chosen to Stamp, Computer choice is ${ComputerChoice} after all ${ResultMsgStamp} `)
-  ">Stamp</button>
+   <button class="button" onclick="
+    computerChoice = GenerateComputerChoice();
+    resultMsg = getResult('Stamp', computerChoice);
+    showResult('Stamp', computerChoice, resultMsg);
+ ">Stamp</button>
+  <button  class = 'button' onclick="
+  localStorage.clear();
+  resetScore();
+  ">Reset</button>
+  <h3 id = 'user-move'></h3>
+  <h3 id = 'computer-move'></h3>
+  <h3 id = 'result'></h3>
+  <h3 id = 'score'></h3>
 </div>
   </div>
   <script>
     
    let ComputerChoice;
+   let scorestr = localStorage.getItem('Score');
+   let score;
+   resetScore(scorestr);
+   function resetScore(scorestr){
+   score = scorestr ? JSON.parse(scorestr) : {
+    win : 0,
+    loss : 0,
+    tie : 0,
+   }
+   score.displayScore =  function() {
+     return ` Won : ${score.win}, Lost : ${score.loss}, Tie : ${score.tie}`
+    }
+    showResult();
+  };
    function GenerateComputerChoice(){
     let RandomNumber = Math.random() * 3
    if (RandomNumber > 0 && RandomNumber <= 1) {
-    ComputerChoice = 'Bat';
+    return 'Bat';
     } else if (RandomNumber > 1 && RandomNumber <= 2){
-      ComputerChoice = 'Ball'
+      return 'Ball';
     } else{
-      ComputerChoice = 'Stamp'
+      return 'Stamp';
     }
    }
-   
+   function getResult(userMove, computerMove){
+    if (userMove === 'Bat') {
+      if (computerMove === 'Bat') {
+        score.tie++;
+        return `It's a tie`
+      } else if (computerMove === 'Ball') {
+        score.win++;
+        return `You have won.`
+      } else if (computerMove === 'Stamp') {
+        score.loss++;
+        return `You loss the match`
+      }
+    } else if(userMove === 'Ball') {
+      if (computerMove === 'Ball') {
+        score.tie++;
+        return `It's a tie`
+      } else if (computerMove === 'Bat') {
+        score.loss++;
+        return `You loss the match`;
+      } else if (computerMove === 'Stamp') {
+        score.win++;
+        return `You have won the match`
+      }
+    } else {
+      if (computerMove === 'Stamp') {
+        score.tie++;
+        return `It's a tie`
+      } else if (computerMove === 'Bat') {
+        score.win++;
+        return 'You have won the match'
+      } else if (computerMove === 'Ball') {
+        score.loss++;
+        return 'You loss the match'
+      }
+    }
+   }
 
+   function showResult(userMove, computerMove, result){
+    localStorage.setItem('Score', JSON.stringify(score));
+    document.querySelector('#user-move').innerText = userMove ? `You have chosen ${userMove}` : ``;
+    document.querySelector('#computer-move').innerText = computerMove ? `Computer have chosen ${computerMove}` : ``;
+    document.querySelector('#result').innerText = result || ``;
+    document.querySelector('#score').innerText = score.displayScore();
+   }
   </script>
 </body>
 </html>
